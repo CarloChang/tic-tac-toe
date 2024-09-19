@@ -9,41 +9,53 @@
 
 
 function gameboard(){
-    const myArray =   [[[],[],[]], 
+    const board =     [[[],[],[]], 
                        [[],[],[]],
                        [[],[],[]]];
 
-    return myArray
+    const playerOneTurn = (firstPosition, secondPosition) => {
+        board[firstPosition][secondPosition] = 'X';
+        return {newPosition: 'X', board}
+    }
+
+    const playerTwoTurn = (firstPosition, secondPosition) => {
+        board[firstPosition][secondPosition] = 'O';
+        return {newPosition: 'O', board}
+    }
+
+
+    return {board, playerOneTurn, playerTwoTurn}
 }
-/* Se podría hacer un While para que esté en constante loop hasta que se acabe el juego
-    varios if con condicion de que se elija un número entre 0-2, cualquiera de esos, repetiria el input
-    se me ocurre una soluciòn muy vaga y poco eficiente que es que si la posición (ejemplo) [0][0],[0][1],[0][2] es igual a = "X" ó "O", gana dicho jugador
-     que ocurre con dicha solución tendría que hacerlo para cada posición posible que tampoco es tanto, pero es tedioso */
-const board = gameboard();
-board[0][0] = 'X';
 
-console.table(board)
+const game = gameboard();
+game.playerOneTurn(0,2);
+console.table(game.board);
 
-function createUser(name){
+
+const createUser = function(name){
     const userName = `Your username is: ${name}`;
-    return {name, userName}
+
+    const createPlayer = (name) => {
+        const player = createUser(name);
+        let score = 0;
+        const getScore = () => score;
+        const increaseScore = () => score++;
+
+        return {name, score, player, getScore, increaseScore};
+    }
+
+    return {name, userName, createPlayer}
+
 }
 
-function createPlayer(name){
-    const player = createUser(name);
-    let score = 0;
-    const getScore = () => score;
-    const increaseScore = () => score++;
+const playerOne = createUser('Carlo').createPlayer('Carlo');
+// playerOne.increaseScore();
+const playerTwo = createUser('Jose').createPlayer('Jose');
 
-    return {name, score, player, getScore, increaseScore};
-}
-
-const playerOne = createPlayer('Carlo');
-playerOne.increaseScore();
-//const playerTwo = createPlayer('Jose');
 
 console.log({
     playerOne: playerOne.player,
     playerOneScore: playerOne.getScore()
 });
+
 
