@@ -8,54 +8,68 @@
         "      crear cada jugador, con sus especificas puntuaciones: Nombre, Simbolo, Partidas Ganadas*/
 
 
-function gameboard(){
+function game(){
     const board =     [[[],[],[]], 
                        [[],[],[]],
                        [[],[],[]]];
 
-    const playerOneTurn = (firstPosition, secondPosition) => {
-        board[firstPosition][secondPosition] = 'X';
-        return {newPosition: 'X', board}
-    }
-
-    const playerTwoTurn = (firstPosition, secondPosition) => {
-        board[firstPosition][secondPosition] = 'O';
-        return {newPosition: 'O', board}
-    }
-
-
-    return {board, playerOneTurn, playerTwoTurn}
-}
-
-const game = gameboard();
-game.playerOneTurn(0,2);
-console.table(game.board);
-
-
-const createUser = function(name){
-    const userName = `Your username is: ${name}`;
-
-    const createPlayer = (name) => {
-        const player = createUser(name);
-        let score = 0;
+    const createPlayer = function(name, mark){
+        const player = name;
         const getScore = () => score;
         const increaseScore = () => score++;
+        return {name, score: 0, player, mark, getScore, increaseScore}
 
-        return {name, score, player, getScore, increaseScore};
     }
 
-    return {name, userName, createPlayer}
+    
+    const playerTurn = (firstPosition, secondPosition, mark) => {
+        if (board[firstPosition][secondPosition] == ''){
+            board[firstPosition][secondPosition] = mark;
+            if (gameOver()){
+                alert(`${mark} wins!`);
+            }
+        } else {
+            alert('this position is already taken');
+        }
+        
+    }
 
+    const gameOver = () => {
+        const allEqual = arr => arr.every(val => val === arr[0] && val !== ''); //https://dev.to/rajnishkatharotiya/function-to-check-if-all-records-are-equal-in-array-javascript-3mo3#:~:text=Javascript%20Useful%20Snippets%20%E2%80%94%20allEqual(),are%20equal%20and%20false%20otherwise.
+        const winningPositions = [[[0, 0], [0, 1], [0, 2]],
+                                  [[1, 0], [1, 1], [1, 2]],
+                                  [[2, 0], [2, 1], [2, 2]],
+                            
+                                // Columns
+                                  [[0, 0], [1, 0], [2, 0]],
+                                  [[0, 1], [1, 1], [2, 1]],
+                                  [[0, 2], [1, 2], [2, 2]],
+                            
+                                // Diagonals
+                                  [[0, 0], [1, 1], [2, 2]],
+                                  [[0, 2], [1, 1], [2, 0]]];
+
+            for (let positions of winningPositions) {
+            const values = positions.map(([x, y]) => board[x][y]);
+            if (allEqual(values)) {
+                alert("We have a winner!");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    return {board, createPlayer, playerTurn, gameOver}
 }
 
-const playerOne = createUser('Carlo').createPlayer('Carlo');
-// playerOne.increaseScore();
-const playerTwo = createUser('Jose').createPlayer('Jose');
 
+const play = game();
+const playerOne = play.createPlayer('Carlo', 'X');
+const playerTwo = play.createPlayer('Jose', 'O');
 
-console.log({
-    playerOne: playerOne.player,
-    playerOneScore: playerOne.getScore()
-});
+play.playerTurn(0,0, playerOne.mark);
+play.playerTurn(0,1, playerTwo.mark);
+play.playerTurn(0,2, playerOne.mark);
+console.table(play.board);
 
 
