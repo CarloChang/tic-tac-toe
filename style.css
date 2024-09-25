@@ -1,0 +1,22 @@
+body {
+    background-color: #eceff4;
+    font-family: sans-serif;
+}
+
+svg {
+    width: 3rem;
+    fill: #2e3440;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #d8dee9;
+    color: #2e3440;
+    padding: 1vh 0;
+}
+
+header p {
+    font-size: 1.5rem;
+}
