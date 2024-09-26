@@ -1,5 +1,7 @@
 function game() {
-    const board = [['', '', ''], ['', '', ''], ['', '', '']];
+    const board = [['', '', ''],
+                   ['', '', ''], 
+                   ['', '', '']];
 
     const createPlayer = function(name, mark) {
         let score = 0;
@@ -16,13 +18,12 @@ function game() {
     
             if (board[firstPosition][secondPosition] === '') {
                 board[firstPosition][secondPosition] = player.mark;
-                validMove = true;  // Exit the loop if the move is valid
+                validMove = true;  
             } else {
                 alert('This position is already taken, try again.');
             }
         }
     
-        // After a valid move, check for game over
         if (gameOver()) {
             console.log(`${player.name} wins with mark ${player.mark}!`);
             player.increaseScore();
@@ -34,7 +35,7 @@ function game() {
         let currentPlayer = playerOne;
         let isGameOver = false;
         while (!isGameOver) {
-            playerTurn(currentPlayer);  // Let playerTurn handle prompting for positions
+            playerTurn(currentPlayer);  
     
             isGameOver = gameOver();
     
@@ -62,26 +63,34 @@ function game() {
             [[0, 2], [1, 1], [2, 0]]
         ];
 
-        // Check for a winner
+        
         for (let positions of winningPositions) {
             const values = positions.map(([x, y]) => board[x][y]);
             if (allEqual(values)) {
                 console.log("We have a winner!");
-                return true; // End the game if a winner is found
+                return true;  
             }
         }
 
-        // Check for a tie
+        
         const isBoardFull = board.every(row => row.every(cell => cell !== ''));
         if (isBoardFull) {
             console.log("It's a tie!");
-            return true; // Game over due to a tie
+            return true; 
         }
 
-        return false;  // Continue the game
+        return false;  
     };
 
-    return { board, createPlayer, playerTurn, gameOver, startGame };
+    const playAgain = () => {
+        board.forEach((row, rowIndex) => {
+            row.forEach((cell, cellIndex) => {
+                board[rowIndex][cellIndex] = '';
+            })
+        })
+    }
+
+    return { board, createPlayer, playerTurn, gameOver, startGame, playAgain };
 }
 
 const play = game();
@@ -92,3 +101,6 @@ play.startGame(playerOne, playerTwo);
 
 console.table(play.board);
 console.log(playerOne.getScore(), playerTwo.getScore());
+
+play.playAgain();
+console.table(play.board);

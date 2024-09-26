@@ -20,3 +20,31 @@ header {
 header p {
     font-size: 1.5rem;
 }
+
+.grid {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 10px;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameGrid {
+    background-color: white;
+    border: 1px solid black;
+    height: 10vw;
+    width: 10vw;
+}
+
+.rightSide, .leftSide {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+

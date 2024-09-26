@@ -17,7 +17,53 @@
         </div>
     </header>
     <main>
-
+        <h1>Tic-Tac-Toe</h1>
+        <h2 id="displayName">test</h2> <!--Current player turn-->
+        <div class="grid">
+            <div class="leftSide">
+                <h3>Player One:</h3>
+                <div class="playerStats">
+                    <div id="playerOneName">Carlo</div>
+                    <div id="playerOneScore">0</div>
+                </div>
+            </div>
+            <div class="board">
+                <div class="firstRow">
+                    <div id="gridOne" class="gameGrid"></div>
+                    <div id="gridTwo" class="gameGrid"></div>
+                    <div id="gridThree" class="gameGrid"></div>
+                </div>
+                <div class="secondRow">
+                    <div id="gridFour" class="gameGrid"></div>
+                    <div id="gridFive" class="gameGrid"></div>
+                    <div id="gridSix" class="gameGrid"></div>
+                </div>
+                <div class="thirdRow">
+                    <div id="gridSeven" class="gameGrid"></div>
+                    <div id="gridEight" class="gameGrid"></div>
+                    <div id="gridNine" class="gameGrid"></div>
+                </div>
+            </div>
+            <div class="rightSide">
+                <h3>Player Two</h3>
+                <div class="playerStats">
+                    <div id="playerTwoName">Jose</div>
+                    <div id="playerTwoScore">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="insertPlayersName">
+                <div id="">
+                    <input type="text" name="playerOneName" id="playerOneName">
+                </div>
+                <div id=""></div>
+                <input type="text" name="playerTwoName" id="playerTwoName">
+            </div>
+            <div id="playAgain">
+                Play Again
+            </div>
+        </div>
     </main>
 </body>
 </html>
