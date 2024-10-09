@@ -72,15 +72,13 @@ function game() {
             }
         }
 
-        
-        const isBoardFull = board.every(row => row.every(cell => cell !== ''));
-        if (isBoardFull) {
-            console.log("It's a tie!");
-            return true; 
-        }
 
         return false;  
     };
+
+    const isBoardFull = () => {
+        return board.every(row => row.every(cell => cell !== ''));
+    }
 
     const playAgain = () => {
         board.forEach((row, rowIndex) => {
