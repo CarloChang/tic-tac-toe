@@ -10,6 +10,7 @@ function game() {
     
     let gameActive = true;
     let currentPlayer;
+    let playerOne, playerTwo; // Declare playerOne and playerTwo here
 
     const handleClick = (x, y, player) => {
         if (gameActive) {
@@ -66,12 +67,17 @@ function game() {
         const allEqual = arr => arr.every(val => val === arr[0] && val !== '');
 
         const winningPositions = [
+            // Rows
             [[0, 0], [0, 1], [0, 2]],
             [[1, 0], [1, 1], [1, 2]],
             [[2, 0], [2, 1], [2, 2]],
+
+            // Columns
             [[0, 0], [1, 0], [2, 0]],
             [[0, 1], [1, 1], [2, 1]],
             [[0, 2], [1, 2], [2, 2]],
+
+            // Diagonals
             [[0, 0], [1, 1], [2, 2]],
             [[0, 2], [1, 1], [2, 0]]
         ];
@@ -109,15 +115,47 @@ function game() {
         document.getElementById("playerTwoScore").textContent = playerTwo.getScore();
     };
 
+    let playerOneInput;
+    let playerTwoInput;
+
+    // When the "Send" button is clicked
+    document.getElementById('send').addEventListener('click', () => {
+        playerOneInput = document.getElementById('playerOneInput').value;
+        playerTwoInput = document.getElementById('playerTwoInput').value;
+        
+        // Create playerOne and playerTwo objects from the inputs
+        playerOne = createPlayer(playerOneInput, 'X');
+        playerTwo = createPlayer(playerTwoInput, 'O');
+
+        //Display buttons
+        document.getElementById('startGame').style.visibility = 'visible';
+        document.getElementById('startGame').style.display = 'block';
+
+        document.getElementById('playAgain').style.visibility = 'visible';
+        document.getElementById('playAgain').style.display = 'block';
+
+        // Display Names
+        document.getElementById('playerOneName').textContent = playerOneInput;
+        document.getElementById('playerTwoName').textContent = playerTwoInput;
+
+        //Hide inputs
+        document.getElementById('form').style.visibility = 'hidden';
+        document.getElementById('form').style.display = 'none';
+        
+    });
+
+    // Start game when "Start Game" button is clicked
+    document.getElementById('startGame').addEventListener('click', () => {
+        startGame(playerOne, playerTwo);  // Pass playerOne and playerTwo
+        document.getElementById('startGame').style.visibility = 'hidden';
+        document.getElementById('startGame').style.display = 'none';
+    });
+
+    // Reset game when "Play Again" button is clicked
     document.getElementById('playAgain').addEventListener('click', playAgain);
 
     return { board, createPlayer, startGame, playAgain };
 }
 
-// Create game instance and players
+// Create game instance
 const play = game();
-const playerOne = play.createPlayer('Carlo', 'X');
-const playerTwo = play.createPlayer('Jose', 'O');
-
-// Start the game
-play.startGame(playerOne, playerTwo);

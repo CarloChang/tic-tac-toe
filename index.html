@@ -17,14 +17,20 @@
         </div>
     </header>
     <main>
-        <h1>Tic-Tac-Toe</h1>
         <h2 id="displayWinner"></h2>
         <h2 id="displayName"></h2> <!--Current player turn-->
+        <form action="" id="form">
+            <label for="playerOneInput">Player One name: <input type="text" name="playerOneInput" id="playerOneInput" placeholder="Player one name"></label>
+            <label for="playerTwoInput">Player Two name: <input type="text" name="playerTwoInput" id="playerTwoInput" placeholder="Player two name"></label>
+            <div id="send">
+                Start playing
+            </div>
+        </form>
         <div class="grid">
             <div class="leftSide">
                 <h3>Player One:</h3>
                 <div class="playerStats">
-                    <div id="playerOneName">Carlo</div>
+                    <div id="playerOneName"></div>
                     <div id="playerOneScore">0</div>
                 </div>
             </div>
@@ -48,22 +54,17 @@
             <div class="rightSide">
                 <h3>Player Two</h3>
                 <div class="playerStats">
-                    <div id="playerTwoName">Jose</div>
+                    <div id="playerTwoName"></div>
                     <div id="playerTwoScore">0</div>
                 </div>
             </div>
         </div>
         <div class="bottom">
-            <div class="insertPlayersName"><!--On submit, prevent default, hide both label and input-->
-                <div id="">
-                    <label>First player username: <input type="text" name="playerOneName" id="playerOneName"></label>
-                </div>
-                <div id="">
-                    <label>Second player username <input type="text" name="playerTwoName" id="playerTwoName"></label>                    
-                </div>
+            <div id="startGame">
+                Start
             </div>
             <div id="playAgain">
-                Play Again
+                Reset
             </div>
         </div>
     </main>

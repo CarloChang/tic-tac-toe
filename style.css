@@ -21,8 +21,10 @@ header p {
     font-size: 1.5rem;
 }
 
+/* Header */
+
 .grid {
-    padding: 10px;
+    padding: 3vw;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     gap: 10px;
@@ -39,6 +41,11 @@ header p {
     border: 1px solid black;
     height: 10vw;
     width: 10vw;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
 }
 
 .rightSide, .leftSide {
@@ -48,3 +55,35 @@ header p {
     align-items: center;
 }
 
+/* Main Body */
+
+.bottom {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#startGame, #playAgain{
+    padding: 1.2vw;
+    cursor: pointer;
+    font-size: 2vw;
+    outline: none;
+    color: #eceff4;
+    font-weight: bold;
+    display: none;
+    visibility: hidden;
+}
+
+#startGame {
+    background-color: #a3be8c;
+    border: 1px solid #a3be8c;
+    border-radius: 15%;
+}
+
+#playAgain {
+    background-color: #bf616a;
+    border: 1px solid #bf616a;
+    border-radius: 15%;
+}
+
+/* Bottom */
