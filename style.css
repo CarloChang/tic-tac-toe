@@ -21,7 +21,18 @@ header p {
     font-size: 1.5rem;
 }
 
+.logo {
+    font-weight: bold;
+}
+
 /* Header */
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
 
 .grid {
     padding: 3vw;
@@ -39,8 +50,8 @@ header p {
 .gameGrid {
     background-color: white;
     border: 1px solid black;
-    height: 10vw;
-    width: 10vw;
+    height: 8.6vw;
+    width: 8.6vw;
     font-size: 6vw;
     display: flex;
     justify-content: center;
@@ -53,6 +64,22 @@ header p {
     flex-direction: column;
     gap: 5px;
     align-items: center;
+    justify-content: center;
+}
+
+.rightSide h3, .leftSide h3{
+    font-size: 2.5vw;
+}
+
+#playerOneName, #playerTwoName, #playerOneScore, #playerTwoScore{
+    font-size: 2vw;
+
+}
+
+#displayWinner, #displayName{
+    text-align: center;
+    margin: 0;
+    padding: 10px;
 }
 
 /* Main Body */
@@ -74,7 +101,16 @@ header p {
     visibility: hidden;
 }
 
-#startGame {
+#send {
+    padding: 1.2vw;
+    cursor: pointer;
+    font-size: 1vw;
+    outline: none;
+    color: #eceff4;
+    font-weight: bold;
+}
+
+#startGame, #send {
     background-color: #a3be8c;
     border: 1px solid #a3be8c;
     border-radius: 15%;
